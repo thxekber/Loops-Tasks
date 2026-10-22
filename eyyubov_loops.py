@@ -219,3 +219,157 @@ print(f"Goal reached in month {month}")
 # Q17 Break stops the program if number can be divided by 7 and if number is odd. Answer is 105
 
 # Q18
+
+pin = "2580"
+balance = 1000
+attempts = 0
+status = True
+while attempts < 3:
+    entered = input("Enter PIN:")
+    attempts += 1
+    if entered == pin:
+        print("Acces granted")
+        status = True
+        break
+    else:
+        status = False
+        if attempts == 3:
+            print("Card blocked")
+while status:
+    print("1 - Check balance\n2 - Deposit\n3 - Withdraw\n4 - Exit")
+    option = input("Choose an option:")
+    if option == "1":
+        print(f"Current balance: {balance} AZN")
+    elif option == "2":
+        amount = int(input("Enter the amount:"))
+        if amount <= 0:
+            print("Invalid amount")
+        else:
+            balance += amount
+            print(f"Current balance: {balance} AZN")
+    elif option == "3":
+        amount = int(input("Enter the amount:"))
+        if amount <= 0:
+            print("Invalid amount")
+        else:
+            balance -= amount
+            print(f"Current balance: {balance} AZN")
+    elif option == "4":
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid choice")
+
+# Q19
+
+price = 1.5
+total = 0
+while total < price:
+    insert = float(input("Insert coin:"))
+    if insert in (0.05, 0.1, 0.2, 0.5, 1):
+        total += insert
+        print(f"Total: {total:.2f}")
+    else:
+        print("Coin not accepted")
+print("Here is your water")
+if total > price:
+    print(f"Change: {(total - price):.2f}")
+
+# Q20
+total = 0
+for code in range(1, 101):
+    div_count = 0
+    for div in range(1, code+1):
+        if code % div == 0:
+            div_count += 1
+    if div_count == 2:
+        print(code, end=" ")
+        total += 1
+print(f"Total codes: {total}")
+
+#  Q21 Answer:
+# 101 102
+# 201 202
+# 301 302
+
+# Q22
+
+floor = 1
+while floor < 6:
+    room = 1
+    if floor == 4:
+        floor += 1
+        continue
+    print(f"Floor {floor}:", end = " ")
+    while room < 5:
+        print(f"{floor*100 + room}", end = " ")
+        if room == 4:
+            print()
+        room += 1
+    floor += 1
+
+# Q23
+
+time = 60
+queue = 0
+customerNum = 0
+while queue <= time:
+    customerNum += 1
+    customerTime = int(input(f"Customer {customerNum} needs (min): "))
+    queue += customerTime
+    if customerTime == 0:
+        break
+if customerTime != 0:
+    print("Sorry, come back tomorrow")
+timeLeft = time - (queue - customerTime)
+print(f"Customers served: {customerNum - 1}")
+print(f"Minutes left: {timeLeft}")
+
+# Q24
+vote = ""
+votedA = 0
+votedB = 0
+votedC = 0
+spoiled = 0
+while True:
+    vote = input("Vote: ")
+    match vote:
+        case "A":
+            votedA += 1
+        case "B":
+            votedB += 1
+        case "C":
+            votedC += 1
+        case "end":
+            break
+        case _:
+            spoiled += 1
+print(f"A: {votedA}  B: {votedB}  C: {votedC}\nSpoiled: {spoiled}")
+if votedA == votedB or votedB == votedC or votedA == votedC:
+    print("Tie")
+elif votedA > votedB and votedA > votedC:
+    print(f"Winner: A")
+elif votedB > votedA and votedB > votedC:
+    print(f"Winner: B")
+else:
+    print(f"Winner: C")
+
+# Q25
+card = input("Enter your card number: ")
+sum = 0
+if len(card) == 16:
+    for i in range(-1, -17, -1):
+        digit = int(card[i])
+        if i % 2 == 0 :
+            if digit*2 > 9:
+                sum = sum + digit*2 - 9
+            else:
+                sum = sum + digit*2
+        else:
+            sum += digit
+    if sum % 10 == 0:
+        print("Valid")
+    else:
+        print("Invalid")
+else:
+    print("Card must contain 16 digits")
