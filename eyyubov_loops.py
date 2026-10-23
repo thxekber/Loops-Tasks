@@ -310,7 +310,7 @@ while floor < 6:
 
 # Q23
 
-time = 60
+time = 480
 queue = 0
 customerNum = 0
 while queue <= time:
